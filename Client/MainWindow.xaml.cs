@@ -27,39 +27,24 @@ namespace Client
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void button_Click(object sender, RoutedEventArgs e)
         {
-            const string ip = "127.0.0.1";
+            IPAddress localIp = IPAddress.Loopback;
             const int port = 8080;
 
-            var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+            var tcpEndPoint = new IPEndPoint(localIp, port);
 
             var tcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-            var message = "some message";
+            var message = "change";
 
             var data = Encoding.UTF8.GetBytes(message);
 
             tcpSocket.Connect(tcpEndPoint);
             tcpSocket.Send(data);
 
-            var buff = new byte[256];
-            var size = 0;
-            var answer = new StringBuilder();
-
-            do
-            {
-                size = tcpSocket.Receive(buff);
-                answer.Append(Encoding.UTF8.GetString(buff, 0, size));
-            }
-            while (tcpSocket.Available > 0);
-
-            Console.WriteLine(answer.ToString());
-
             tcpSocket.Shutdown(SocketShutdown.Both);
             tcpSocket.Close();
-
-            Console.ReadLine(); // бесконечный цикл
         }
     }
 }
