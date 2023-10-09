@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +24,18 @@ namespace Server
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public static readonly Random global_random = new();
+
+        private static void RandomizeColor(Rectangle rectangle)
+        {
+            rectangle.Fill = new SolidColorBrush(Color.FromArgb(255, (byte)global_random.Next(256), (byte)global_random.Next(256), (byte)global_random.Next(256)));
+        }
+
+        private void RandomizeGrid()
+        {
+            
         }
     }
 }
