@@ -25,16 +25,19 @@ namespace Server
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Thread thread;
         public MainWindow()
         {
             InitializeComponent();
 
-            var thread = new Thread(Listen);
+            thread = new Thread(Listen);
 
             thread.Start();
         }
 
         public readonly Random global_random = new();
+
+        private bool IsRunning = true;
 
         public void Listen()
         {
@@ -49,7 +52,7 @@ namespace Server
 
             TcpSocket.Listen(1);
 
-            for (; ; )
+            while (IsRunning)
             {
                 var listener = TcpSocket.Accept();
                 this.Dispatcher.Invoke(RandomizeGrid);
@@ -66,6 +69,12 @@ namespace Server
         {
             foreach (Rectangle rectangle in ColorGrid.Children)
                 RandomizeColor(rectangle);
+        }
+
+        private void MainWindow1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            IsRunning = false;
+            thread.Abort();
         }
     }
 }
