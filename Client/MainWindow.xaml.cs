@@ -14,7 +14,7 @@ namespace Client
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            const string ip = "192.168.94.224";
+            string ip = textBox.Text;
             const int port = 5001;
 
             var tcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -29,6 +29,11 @@ namespace Client
 
             tcpSocket.Shutdown(SocketShutdown.Both);
             tcpSocket.Close();
+        }
+
+        private void textBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
         }
     }
 }
