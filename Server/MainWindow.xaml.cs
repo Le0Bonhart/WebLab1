@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net;
 using System.Net.Sockets;
+using System.Diagnostics;
 
 namespace Server
 {
@@ -25,14 +26,12 @@ namespace Server
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Thread thread;
+        private Thread? thread = null;
+        private string ip = "";
+        private IPAddress? ip_addr = null;
         public MainWindow()
         {
             InitializeComponent();
-
-            thread = new Thread(Listen);
-
-            thread.Start();
         }
 
         public readonly Random global_random = new();
@@ -41,22 +40,28 @@ namespace Server
 
         public void Listen()
         {
-            const string ip = "127.0.0.1";
             const int port = 5001;
 
-            var TcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
+            var TcpEndPoint = new IPEndPoint(ip_addr, port);
 
             var TcpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-            TcpSocket.Bind(TcpEndPoint);
+            try
+            {
+                TcpSocket.Bind(TcpEndPoint);
+            }
+            catch 
+            {
+                Dispatcher.Invoke(CannotConnect);
+                return;
+            }
 
             TcpSocket.Listen(1);
 
             while (IsRunning)
             {
                 var listener = TcpSocket.Accept();
-                this.Dispatcher.Invoke(RandomizeGrid);
-                Thread.Sleep(1000);
+                Dispatcher.Invoke(RandomizeGrid);
             }
         }
 
@@ -71,10 +76,44 @@ namespace Server
                 RandomizeColor(rectangle);
         }
 
+        private void CannotConnect()
+        {
+            ip_label.Content = "Невозможно подключится по данному адрессу!!!";
+            return;
+        }
+
         private void MainWindow1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            IsRunning = false;
-            thread.Abort();
+            thread?.Abort();
+        }
+
+        private void start_button_Click(object sender, RoutedEventArgs e)
+        {
+            ip = ip_box.Text;
+
+            if (thread != null) return;
+
+            if (!IPAddress.TryParse(ip, out ip_addr))
+            {
+                ip_label.Content = "Адресс не корректен!!!";
+                return;
+            }
+
+            if (ip_addr.AddressFamily != AddressFamily.InterNetwork)
+            {
+                ip_label.Content = "Неверный протокол!!!";
+                return;
+            }
+
+            ip_box.Text = ip_addr.ToString();
+
+            thread = new Thread(Listen);
+            thread.Start();
+        }
+
+        private void ip_box_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ip_label.Content = "Введите IPv4 адресс:";
         }
     }
 }
