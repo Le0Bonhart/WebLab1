@@ -78,7 +78,7 @@ namespace Server
 
         private void CannotConnect()
         {
-            ip_label.Content = "Невозможно подключится по данному адрессу!!!";
+            ip_label.Content = "Невозможно подключится по данному адресу";
             return;
         }
 
@@ -95,13 +95,13 @@ namespace Server
 
             if (!IPAddress.TryParse(ip, out ip_addr))
             {
-                ip_label.Content = "Адресс не корректен!!!";
+                ip_label.Content = "Адрес не корректен";
                 return;
             }
 
             if (ip_addr.AddressFamily != AddressFamily.InterNetwork)
             {
-                ip_label.Content = "Неверный протокол!!!";
+                ip_label.Content = "Неверный протокол";
                 return;
             }
 
@@ -113,7 +113,7 @@ namespace Server
 
         private void ip_box_GotFocus(object sender, RoutedEventArgs e)
         {
-            ip_label.Content = "Введите IPv4 адресс:";
+            ip_label.Content = "Введите IPv4 адрес";
         }
     }
 }

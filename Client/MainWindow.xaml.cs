@@ -30,10 +30,5 @@ namespace Client
             tcpSocket.Shutdown(SocketShutdown.Both);
             tcpSocket.Close();
         }
-
-        private void textBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-
-        }
     }
 }

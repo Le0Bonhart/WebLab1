@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="LabClient" Height="450" Width="800">
     <Grid x:Name="Client" Background="#FF1B1E25">
-        <StackPanel>
-            <Label x:Name="label" Content="Введите IP адрес" Height="40" Width="180" Foreground="White" FontFamily="Bahnschrift" FontSize="20" BorderThickness="2,5,0,0" Background="#FF1B1E25" Margin="0,140,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-            <TextBox x:Name="textBox" TextWrapping="Wrap" Text="" Height="40" Width="424" RenderTransformOrigin="0.493,0.544" Background="#FF31343A" FontFamily="Bahnschrift" FontSize="36" TextAlignment="Center" BorderBrush="#FF31343A" Foreground="White" SelectionBrush="#FF31343A" HorizontalAlignment="Center" TextChanged="textBox_TextChanged" Margin="0,0,0,10"/>
-            <Button x:Name="button" Content="Жмать" Height="35" Width="180" FontSize="20" Click="button_Click" Background="#FF31343A" FontFamily="Bahnschrift" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <StackPanel VerticalAlignment="Center" Height="435" HorizontalAlignment="Center" Width="800">
+            <Label x:Name="label" Content="Введите IPv4 адрес" Height="39" Width="416" Foreground="White" FontFamily="Bahnschrift" FontSize="20" BorderThickness="2,5,0,0" Background="#FF1B1E25" Margin="0,140,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.495,0.515" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="textBox" TextWrapping="Wrap" Text="" Height="40" Width="343" RenderTransformOrigin="0.493,0.544" Background="#FF31343A" FontFamily="Bahnschrift" FontSize="18" TextAlignment="Center" BorderBrush="#FF31343A" Foreground="White" SelectionBrush="#FF31343A" HorizontalAlignment="Center" Margin="0,5,0,13" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Button x:Name="button" Content="Старт" Height="44" Width="134" FontSize="20" Click="button_Click" Background="#FF31343A" FontFamily="Bahnschrift" Foreground="White" HorizontalAlignment="Center" BorderBrush="#FF31343A"/>
         </StackPanel>
     </Grid>
 </Window>

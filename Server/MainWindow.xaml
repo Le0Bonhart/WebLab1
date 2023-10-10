@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:Server"
         mc:Ignorable="d"
         Title="LabServer" Height="450" Width="800" Closing="MainWindow1_Closing">
-    <Grid>
-        <StackPanel HorizontalAlignment="Center" Height="349" Width="350">
-            <Grid x:Name="ColorGrid" HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="200" ShowGridLines="True" Margin="0,0,0,45">
+    <Grid Background="#FF1B1E25">
+        <StackPanel HorizontalAlignment="Center" Width="800" VerticalAlignment="Center" Height="434">
+            <Grid x:Name="ColorGrid" HorizontalAlignment="Center" Height="200" VerticalAlignment="Center" Width="200" ShowGridLines="True" Margin="0,40,0,45">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -38,9 +38,9 @@
                 <Rectangle Grid.Row="2" Grid.Column="3" Height="50" Width="50" />
                 <Rectangle Grid.Row="3" Grid.Column="3" Height="50" Width="50" />
             </Grid>
-            <Label x:Name="ip_label" Content="Введите IPv4 адресс:" HorizontalAlignment="Center" Height="30" VerticalAlignment="Center" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#FFFF3535" Width="350"/>
-            <TextBox x:Name="ip_box" TextWrapping="Wrap" Width="200" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,0,10" GotFocus="ip_box_GotFocus"/>
-            <Button x:Name="start_button" Width="50" Height="20" Content="Старт" Click="start_button_Click" />
+            <Label x:Name="ip_label" Content="Введите IPv4 адрес" Height="39" Width="463" HorizontalContentAlignment="Center" Foreground="White" FontFamily="Bahnschrift" FontSize="20" Padding="5,5,5,5" Margin="0,-32,0,0" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="ip_box" TextWrapping="Wrap" Width="343" HorizontalAlignment="Center" Margin="0,5,0,5" GotFocus="ip_box_GotFocus" Background="#FF31343A" Height="40" FontFamily="Bahnschrift" FontSize="18" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="#FF31343A"/>
+            <Button x:Name="start_button" Height="44" Width="134" Content="Старт" Click="start_button_Click" Background="#FF31343A" Foreground="White" FontFamily="Bahnschrift" FontSize="20" Margin="0,10,0,0" BorderBrush="#FF31343A" />
         </StackPanel>
     </Grid>
 </Window>
