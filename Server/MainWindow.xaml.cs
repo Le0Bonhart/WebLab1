@@ -42,7 +42,7 @@ namespace Server
         public void Listen()
         {
             const string ip = "127.0.0.1";
-            const int port = 8080;
+            const int port = 5001;
 
             var TcpEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
 
