@@ -79,6 +79,7 @@ namespace Server
         private void CannotConnect()
         {
             ip_label.Content = "Невозможно подключится по данному адресу";
+            thread = null;
             return;
         }
 
